@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Delay_10_Seconds" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Delay_10_Seconds" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="filename" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>842,1517</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>617.6,2212</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Delay_10_Seconds_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -35,6 +35,11 @@
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -65,10 +70,13 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Process PDF" sap:VirtualizedContainerService.HintSize="566,1452" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process PDF" sap:VirtualizedContainerService.HintSize="564.8,2147.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="arrayText" />
       <Variable x:TypeArguments="x:String" Name="extractedText" />
@@ -78,13 +86,14 @@
       <Variable x:TypeArguments="x:String" Name="TSFullReferenceNumber" />
       <Variable x:TypeArguments="x:String" Name="TSReferenceNumber" />
       <Variable x:TypeArguments="x:String" Name="TSFileName" />
+      <Variable x:TypeArguments="sd:DataTable" Name="TS" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign sap:VirtualizedContainerService.HintSize="516.8,81.6" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[TSFileName]</OutArgument>
       </Assign.To>
@@ -92,9 +101,9 @@
         <InArgument x:TypeArguments="x:String">[filename.Substring(0,filename.Length - 4)]</InArgument>
       </Assign.Value>
     </Assign>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="518,62" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Processing &quot;+TSFileName+&quot;.pdf&quot;]" />
-    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="[TSFileName+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="518,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[extractedText]" />
-    <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="516.8,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Processing &quot;+TSFileName+&quot;.pdf&quot;]" />
+    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="[TSFileName+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="516.8,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[extractedText]" />
+    <Assign sap:VirtualizedContainerService.HintSize="516.8,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[arrayText]</OutArgument>
       </Assign.To>
@@ -102,9 +111,9 @@
         <InArgument x:TypeArguments="s:String[]">[extractedText.Split(Environment.NewLine.ToArray, StringSplitOptions.RemoveEmptyEntries)]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[arrayText(0).Equals(&quot;MONTHLY REGISTRATION SHEET&quot;)]" sap:VirtualizedContainerService.HintSize="518,941" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[arrayText(0).Equals(&quot;MONTHLY REGISTRATION SHEET&quot;)]" sap:VirtualizedContainerService.HintSize="516.8,1636" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="482,752" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap:VirtualizedContainerService.HintSize="481.6,1446.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="TSReferenceNumber" />
           </Sequence.Variables>
@@ -113,7 +122,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSServiceProvider]</OutArgument>
             </Assign.To>
@@ -121,7 +130,7 @@
               <InArgument x:TypeArguments="x:String">[arrayText(16)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSFullReferenceNumber]</OutArgument>
             </Assign.To>
@@ -129,7 +138,7 @@
               <InArgument x:TypeArguments="x:String">[arrayText(2).Split(" "c)(0)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSReferenceNumber]</OutArgument>
             </Assign.To>
@@ -137,7 +146,7 @@
               <InArgument x:TypeArguments="x:String">[TSFullReferenceNumber.Split("-"c)(2)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSWorkedDay]</OutArgument>
             </Assign.To>
@@ -145,7 +154,7 @@
               <InArgument x:TypeArguments="x:String">[arrayText(15).Split(" "c)(2)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_6">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSPeriod]</OutArgument>
             </Assign.To>
@@ -153,7 +162,45 @@
               <InArgument x:TypeArguments="x:String">[arrayText(6).Split(" "c)(6)+" "+arrayText(6).Split(" "c)(7)]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:WriteTextFile DisplayName="Write Text File" FileName="[TSFileName+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[&quot;TS details&quot;+Environment.NewLine+Environment.NewLine+&quot;ServiceProvider: &quot;+TSServiceProvider+Environment.NewLine+&quot;FullReferenceNumber: &quot;+TSFullReferenceNumber+Environment.NewLine+&quot;ReferenceNumber: &quot;+TSReferenceNumber+Environment.NewLine+&quot;TSPeriod: &quot;+TSPeriod+Environment.NewLine+&quot;WorkedDay: &quot;+TSWorkedDay]" />
+          <ui:WriteTextFile DisplayName="Write Text File" FileName="[TSFileName+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[&quot;TS details&quot;+Environment.NewLine+Environment.NewLine+&quot;ServiceProvider: &quot;+TSServiceProvider+Environment.NewLine+&quot;FullReferenceNumber: &quot;+TSFullReferenceNumber+Environment.NewLine+&quot;ReferenceNumber: &quot;+TSReferenceNumber+Environment.NewLine+&quot;TSPeriod: &quot;+TSPeriod+Environment.NewLine+&quot;WorkedDay: &quot;+TSWorkedDay]" />
+          <Assign DisplayName="create dataTable" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_8">
+            <Assign.To>
+              <OutArgument x:TypeArguments="sd:DataTable">[TS]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="sd:DataTable">[new DataTable()]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="433.6,134.4" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+            <InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="sd:DataColumnCollection">[TS.Columns]</InArgument>
+            </InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="x:String">
+              <Literal x:TypeArguments="x:String">col1</Literal>
+            </InArgument>
+            <InArgument x:TypeArguments="s:Type">
+              <mva:VisualBasicValue x:TypeArguments="s:Type" ExpressionText="GetType(String)" />
+            </InArgument>
+          </InvokeMethod>
+          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="433.6,134.4" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Add">
+            <InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="sd:DataColumnCollection">[TS.Columns]</InArgument>
+            </InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="x:String">
+              <Literal x:TypeArguments="x:String">Col2</Literal>
+            </InArgument>
+            <InArgument x:TypeArguments="s:Type">
+              <mva:VisualBasicValue x:TypeArguments="s:Type" ExpressionText="GetType(String)" />
+            </InArgument>
+          </InvokeMethod>
+          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{TSPeriod,TSWorkedDay}]" DataTable="[TS]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="433.6,24.8" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+          <ui:AppendRange sap2010:Annotation.AnnotationText="Adds 'employees' variable value at the end of the spreadsheet" DataTable="[TS]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="433.6,160" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="[TSReferenceNumber]" WorkbookPath="[&quot;TS_&quot;+TSServiceProvider+&quot;.xlsx&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:AppendRange>
         </Sequence>
       </If.Then>
       <If.Else>
