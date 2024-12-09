@@ -70,6 +70,7 @@
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart sap:VirtualizedContainerService.HintSize="634,654" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -78,7 +79,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <av:Point x:Key="ShapeLocation">150,2.5</av:Point>
         <av:Size x:Key="ShapeSize">60,75</av:Size>
-        <av:PointCollection x:Key="ConnectorLocation">180,77.5 180,96.5</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">180,77.5 180,107.5 220,107.5 220,196.5</av:PointCollection>
         <x:Double x:Key="Height">617.3</x:Double>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
@@ -88,11 +89,11 @@
     <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">80,96.5</av:Point>
+          <av:Point x:Key="ShapeLocation">120,196.5</av:Point>
           <av:Size x:Key="ShapeSize">200,67</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence sap2010:Annotation.AnnotationText="&#xA;" DisplayName="Retrieve &amp; Read PDF doc" sap:VirtualizedContainerService.HintSize="566,921" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence sap2010:Annotation.AnnotationText="&#xA;" DisplayName="Retrieve &amp; Read PDF doc" sap:VirtualizedContainerService.HintSize="566,1349" sap2010:WorkflowViewState.IdRef="Sequence_2">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="extractedText" />
           <Variable x:TypeArguments="s:String[]" Name="arrayText" />
@@ -120,6 +121,32 @@
             <InArgument x:TypeArguments="x:String">[Environment.CurrentDirectory]</InArgument>
           </Assign.Value>
         </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_20">
+          <Assign.To>
+            <OutArgument x:TypeArguments="s:String[]">[files]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(currentPath,"*.xlsx")]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="518,404" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[files]">
+          <ui:ForEach.Body>
+            <ActivityAction x:TypeArguments="x:Object">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:Object" Name="file" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,268" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="368,62" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Deleting previous found Excel : &quot;+file.ToString()]" />
+                <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="368,80" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[file.ToString()]" />
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEach.Body>
+        </ui:ForEach>
         <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_18">
           <Assign.To>
             <OutArgument x:TypeArguments="s:String[]">[files]</OutArgument>
@@ -128,7 +155,6 @@
             <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(currentPath,"*.pdf")]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:PathExists Exists="{x:Null}" DisplayName="Path Exists" sap:VirtualizedContainerService.HintSize="518,90" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[TSFileName+&quot;.pdf&quot;]" PathType="File" />
         <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="518,432" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[files]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:Object">
