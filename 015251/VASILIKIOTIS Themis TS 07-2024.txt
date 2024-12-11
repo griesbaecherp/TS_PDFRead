@@ -1,0 +1,7 @@
+TS details
+
+ServiceProvider: Themis VASILIKIOTIS
+FullReferenceNumber: DIGIT-TMII-015251
+ReferenceNumber: 015251
+TSPeriod: JULY 2024
+WorkedDay: 20,0
