@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>703,837</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>624,837</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -70,6 +70,7 @@
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart sap:VirtualizedContainerService.HintSize="634,654" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -193,7 +194,7 @@
                     <OutArgument x:TypeArguments="x:String">[name]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[file.ToString().Split("."c)(0)+".pdf"]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[file.ToString.Substring(0,file.ToString.Length -4)+".pdf"]</InArgument>
                   </Assign.Value>
                 </Assign>
                 <Assign sap:VirtualizedContainerService.HintSize="1009,82" sap2010:WorkflowViewState.IdRef="Assign_24">
@@ -242,12 +243,8 @@
                 </If>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke PDF parsing" sap:VirtualizedContainerService.HintSize="1009,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="ProcessPDF.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="filename">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="name" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:Boolean" x:Key="lastfile">
-                      <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="lastfile" />
-                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="filename">[name]</InArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="lastfile">[lastfile]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">

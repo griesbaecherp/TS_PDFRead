@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1197,1425</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1197,3131</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PartnerTemplatePDF_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -76,7 +76,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PartnerTemplatePDF" sap:VirtualizedContainerService.HintSize="566,1360" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PartnerTemplatePDF" sap:VirtualizedContainerService.HintSize="650,3066" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="TSServiceProvider" />
       <Variable x:TypeArguments="x:String" Name="TSFullReferenceNumber" />
@@ -89,7 +89,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Split arrayText(0) into sArray" sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign DisplayName="Split arrayText(0) into sArray" sap:VirtualizedContainerService.HintSize="602,82" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[sArray]</OutArgument>
       </Assign.To>
@@ -97,7 +97,7 @@
         <InArgument x:TypeArguments="s:String[]">[arrayText(0).ToString().Split(" "c)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Build templateName" sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign DisplayName="Build templateName" sap:VirtualizedContainerService.HintSize="602,82" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[templateName]</OutArgument>
       </Assign.To>
@@ -105,10 +105,10 @@
         <InArgument x:TypeArguments="x:String">[sArray(0).ToString()+" "+sArray(1).ToString() +" "+sArray(2).ToString()]</InArgument>
       </Assign.Value>
     </Assign>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="518,62" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;PartnerTemplatePDF for &quot;+filename]" />
-    <If Condition="[templateName.Equals(&quot;MONTHLY REGISTRATION SHEET&quot;)]" DisplayName="If PartnerTemplate" sap:VirtualizedContainerService.HintSize="518,941" sap2010:WorkflowViewState.IdRef="If_1">
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="602,62" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;CommissionTemplatePDF for &quot;+filename]" />
+    <If Condition="[templateName.Equals(&quot;MONTHLY ATTENDANCE SHEET&quot;)]" DisplayName="If CommissionTemplate" sap:VirtualizedContainerService.HintSize="602,2647" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="482,752" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence sap:VirtualizedContainerService.HintSize="566,2458" sap2010:WorkflowViewState.IdRef="Sequence_13">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="TSFullReferenceNumber" />
             <Variable x:TypeArguments="x:String" Name="TSWorkedDay" />
@@ -119,47 +119,139 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSServiceProvider]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[arrayText(16)]</InArgument>
+              <InArgument x:TypeArguments="x:String">[arrayText(6)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSFullReferenceNumber]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[arrayText(2).Split(" "c)(0)]</InArgument>
+              <InArgument x:TypeArguments="x:String">[arrayText(11).Split(" "c)(1)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSReferenceNumber]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[TSFullReferenceNumber.Split("-"c)(2)]</InArgument>
+              <InArgument x:TypeArguments="x:String">[TSFullReferenceNumber.ToString.Substring(2)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_14">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[sArray]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[Nothing]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <If Condition="[arrayText(23).Split(&quot; &quot;c).Count&gt;=10 and IsNothing(sArray)]" sap:VirtualizedContainerService.HintSize="518,365" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="482,176" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:String[]">[sArray]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:String[]">[arrayText(23).Split(" "c)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
+          <If Condition="[arrayText(24).Split(&quot; &quot;c).Count&gt;=10 and IsNothing(sArray)]" sap:VirtualizedContainerService.HintSize="518,365" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="482,176" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_12">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:String[]">[sArray]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:String[]">[arrayText(24).Split(" "c)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
+          <If Condition="[arrayText(25).Split(&quot; &quot;c).Count&gt;=10 and IsNothing(sArray)]" sap:VirtualizedContainerService.HintSize="518,365" sap2010:WorkflowViewState.IdRef="If_4">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="482,176" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_13">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:String[]">[sArray]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:String[]">[arrayText(25).Split(" "c)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="518,255" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="482,176" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_8">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:String[]">[sArray]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:String[]">[arrayText(23).Split(" "c)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </ui:CommentOut.Body>
+          </ui:CommentOut>
+          <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSWorkedDay]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[arrayText(15).Split(" "c)(2)]</InArgument>
+              <InArgument x:TypeArguments="x:String">[sArray (sArray.Count -2)]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_9">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[sArray]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[arrayText(0).Split(" "c)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="518,82" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[TSPeriod]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[arrayText(6).Split(" "c)(6)+" "+arrayText(6).Split(" "c)(7)]</InArgument>
+              <InArgument x:TypeArguments="x:String">[sArray (sArray.Count -2)+" " +sArray (sArray.Count -1)]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:WriteTextFile DisplayName="Write Text File" FileName="[filename+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="434,88" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[&quot;TS details&quot;+Environment.NewLine+Environment.NewLine+&quot;ServiceProvider: &quot;+TSServiceProvider+Environment.NewLine+&quot;FullReferenceNumber: &quot;+TSFullReferenceNumber+Environment.NewLine+&quot;ReferenceNumber: &quot;+TSReferenceNumber+Environment.NewLine+&quot;TSPeriod: &quot;+TSPeriod+Environment.NewLine+&quot;WorkedDay: &quot;+TSWorkedDay]" />
+          <ui:WriteTextFile DisplayName="Write Text File" FileName="[filename+&quot;.txt&quot;]" sap:VirtualizedContainerService.HintSize="518,88" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[&quot;TS details&quot;+Environment.NewLine+Environment.NewLine+&quot;ServiceProvider: &quot;+TSServiceProvider+Environment.NewLine+&quot;ReferenceNumber: &quot;+TSReferenceNumber+Environment.NewLine+&quot;TSPeriod: &quot;+TSPeriod+Environment.NewLine+&quot;WorkedDay: &quot;+TSWorkedDay]" />
         </Sequence>
       </If.Then>
       <If.Else>
